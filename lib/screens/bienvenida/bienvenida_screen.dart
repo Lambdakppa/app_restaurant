@@ -5,11 +5,10 @@ class BienvenidaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const fondoColor = Color(0xFF222222); // Fondo oscuro
-    const colorPrincipal = Color(0xFFB388FF); // Morado claro para botones
+
+    final primary = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
-      backgroundColor: fondoColor,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -22,7 +21,7 @@ class BienvenidaScreen extends StatelessWidget {
                   'assets/images/Logo_Apprestaurant.png',
                   height: 160,
                   fit: BoxFit.contain,
-                  color: colorPrincipal, // Aplica color morado al logo si es SVG o PNG monocromo
+                  color: primary, // Aplica color morado al logo si es SVG o PNG monocromo
                 ),
                 const SizedBox(height: 32),
                 // Título

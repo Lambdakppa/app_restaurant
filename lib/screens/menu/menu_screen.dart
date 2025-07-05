@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import '../../widgets/product_card.dart';
+import '../../widgets/bottom_nav.dart';
 
-// Simulación de productos (puedes mover esto a mock_data)
+//datos de prueba
 final productos = [
-  {
-    'nombre': 'Pizza Margarita',
-    'precio': 8500,
-    'imagen': 'assets/pizza.png',
-  },
-  {
-    'nombre': 'Hamburguesa Clásica',
-    'precio': 6500,
-    'imagen': 'assets/burger.png',
-  },
-  // Agrega más productos aquí
+{
+'name': 'Ensalada de Frutas',
+'price': 8500,
+  'category': 'comida',
+'description': 'mix de frutas frescas',
+  'img': 'https://sebastian.cl/cmutem/AiHiDie1.jpg'
+},
+{
+'name': 'Hamburguesa Clásica',
+'price': 6500,
+  'category': 'postre',
+'description': 'Yogurt Light y Granola',
+  'img': 'https://sebastian.cl/cmutem/ipea9Mai.jpg'
+}
 ];
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,31 +38,13 @@ class MenuScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavBar(),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: productos.length,
         itemBuilder: (context, index) {
           final producto = productos[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            child: ListTile(
-              leading: Image.asset(producto['imagen'] as String, width: 56),
-              title: Text(producto['nombre'] as String),
-              subtitle: Text('\$${producto['precio']}'),
-              trailing: ElevatedButton(
-                onPressed: () {
-                  // Aquí puedes agregar lógica para agregar al carrito
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('${producto['nombre']} agregado')),
-                  );
-                },
-                child: const Text('Agregar'),
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, '/detalle_producto');
-              },
-            ),
-          );
+          return ProductCard(producto:producto);
         },
       ),
     );
